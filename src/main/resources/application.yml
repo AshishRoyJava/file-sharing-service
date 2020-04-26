@@ -1,0 +1,16 @@
+# AWS credentials
+aws:
+  accessKeyId:
+  secretKey:
+  bucketName:
+  endpointUrl:
+
+# File properties
+multipart:
+  maxFileSize: 5120KB
+  maxRequestSize: 5120KB
+
+# Server properties
+server:
+  servlet:
+    context-path: /api/v1
