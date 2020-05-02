@@ -1,14 +1,14 @@
 # AWS credentials
 aws:
-  accessKeyId:
-  secretKey:
-  bucketName:
-  endpointUrl:
+  accessKeyId: AKIAVYMS5SXGNQAE37NA
+  secretKey: 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
+  bucketName: alaap-us
+  endpointUrl: https://alaap-us.s3.amazonaws.com/
 
 # File properties
 multipart:
-  maxFileSize: 5120KB
-  maxRequestSize: 5120KB
+  maxFileSize: 512000KB
+  maxRequestSize: 512000KB
 
 # Server properties
 server:

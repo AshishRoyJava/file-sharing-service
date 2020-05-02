@@ -1,10 +1,9 @@
 package co.alaap.filesharingservice.services;
 
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
@@ -40,14 +39,13 @@ public class FileSharingService {
     @PostConstruct
     public void init() {
         AWSCredentials credentials = new BasicAWSCredentials(awsAccessKeyId, awsSecretKey);
-        AmazonS3ClientBuilder clientBuilder = AmazonS3ClientBuilder.standard();
-        s3client = clientBuilder.withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+        s3client = new AmazonS3Client(credentials);
     }
 
     public String uploadFile (MultipartFile file) throws IOException {
         File fileForUpload = transformMultipartToFile(file);
         String fileName = generateFileName(file);
-        String fileUrl = endpointUrl + "/" + awsBucketName + "/" + file.getOriginalFilename();
+        String fileUrl = endpointUrl + "/" + awsBucketName + "/" + fileName;
         s3client.putObject(new PutObjectRequest(awsBucketName, fileName, fileForUpload));
         return fileUrl;
     }
